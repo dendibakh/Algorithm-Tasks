@@ -1,0 +1,263 @@
+import "or_rep_h.mac";
+
+const MaxWidth = 20;
+const CellWidth = 3;
+const BlankValue = 0;
+
+var NumberOfMoves:integer = 0;
+var Rep:CMakeReport = CMakeReport();
+
+class Board(N_:integer, arr_:TArray)
+   private var N = N_;
+   private var arr;
+   
+   
+   macro constructor()
+      
+      var numbersAlreadyInBoard = TArray();
+      
+      macro getNewNumber()
+         var foundNewNumber = false;
+         var newNumber = 0;
+         var alreadyExists = false;
+         while (not foundNewNumber)
+            newNumber = Random(N*N);
+            alreadyExists = false;
+            var number = null;
+            for(number, numbersAlreadyInBoard)
+               if (number == newNumber)
+                  alreadyExists = true;
+               end;
+            end;
+            if (not alreadyExists)
+               foundNewNumber = true;
+               numbersAlreadyInBoard[numbersAlreadyInBoard.size] = newNumber;
+            end;
+         end;
+         return newNumber;
+      end;
+
+      var i = 0;
+      while (i < N)
+         arr[arr.size] = TArray();
+         i = i + 1;
+      end;
+      var row = null;
+      for (row, arr)
+         i = 0;
+         while (i < N)
+            row[i] = getNewNumber();
+            i = i + 1;
+         end;
+      end;
+   end;
+   
+   if (ValType(arr_) == V_UNDEF)
+      arr = TArray();
+      constructor();
+   else
+      arr = TArray();
+      var row = null;
+      for (row, arr_)
+         arr[arr.size] = TArray(row);
+      end;
+   end;
+
+   macro dimension()
+      return N;
+   end;
+
+   macro getBoard():TArray
+      return arr;
+   end;
+
+   macro getI(number:integer)
+      return (number - 1) / N;
+   end;
+
+   macro getJ(number:integer)
+      return mod((number - 1), N);
+   end;
+
+   macro getBlankI()
+      var i = 0;
+      var j = 0;
+      while (i < N)
+         j = 0;
+         while (j < N)
+            if (arr[i][j] == BlankValue)
+               return i;
+            end;
+            j = j + 1;
+         end;
+         i = i + 1;
+      end; 
+      return -1;
+   end;
+
+   macro getBlankJ()
+      var i = 0;
+      var j = 0;
+      while (i < N)
+         j = 0;
+         while (j < N)
+            if (arr[i][j] == BlankValue)
+               return j;
+            end;
+            j = j + 1;
+         end;
+         i = i + 1;
+      end; 
+      return -1;
+   end;
+
+   macro hamming()
+      var i = 0;
+      var j = 0;
+      var WrongPlaces = 0;
+      while (i < N)
+         j = 0;
+         while (j < N)
+            var number = arr[i][j];
+            if (not (number == BlankValue))
+               if (not ((getI(number) == i) and (getJ(number) == j) ) )
+                  WrongPlaces = WrongPlaces + 1;   
+               end;
+            end;
+            j = j + 1;
+         end;
+         i = i + 1;
+      end; 
+      return WrongPlaces;
+   end;
+
+   macro manhattan()
+      var i = 0;
+      var j = 0;
+      var result = 0;
+      while (i < N)
+         j = 0;
+         while (j < N)
+            var number = arr[i][j];
+            if (not (number == BlankValue))
+               var horizontalMoves = abs(j - getJ(number));
+               var verticalMoves = abs(i - getI(number));
+               result = result + horizontalMoves + verticalMoves;   
+            end;
+            j = j + 1;
+         end;
+         i = i + 1;
+      end; 
+      return result;
+   end;
+
+   macro isGoal()
+      if ((manhattan() == 0) and (hamming() == 0))
+         return true;
+      end;
+      return false;
+   end;
+
+   macro toString()
+      var result = "";
+      var row = null;
+      for (row, arr)
+         var cell = null;
+         for (cell, row)
+            result = result + String(cell);
+         end;
+      end;
+      return result;
+   end;
+
+   macro equals(rhs:Board)
+      return toString() == rhs.toString();
+   end;
+
+   macro swapElements(i1, j1, i2, j2)
+      var temp = arr[i1][j1];
+      arr[i1][j1] = arr[i2][j2];
+      arr[i2][j2] = temp;
+   end;
+
+   macro getSwapedBoard(i1, j1, i2, j2)
+      var newBoard = Board(dimension(), getBoard());
+      newBoard.swapElements(i1, j1, i2, j2);
+      return newBoard;
+   end;
+
+   macro getNeighbors()
+      var BlankI = getBlankI();
+      var BlankJ = getBlankJ();
+      var neighbors = TArray();
+
+      if (BlankI == 0)
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI + 1, BlankJ);
+      elif (BlankI == dimension() - 1)
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI - 1, BlankJ);
+      else
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI + 1, BlankJ);
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI - 1, BlankJ);
+      end;
+
+      if (BlankJ == 0)
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI, BlankJ + 1);
+      elif (BlankJ == dimension() - 1)
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI, BlankJ - 1);
+      else
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI, BlankJ + 1);
+         neighbors[neighbors.size] = getSwapedBoard(BlankI, BlankJ, BlankI, BlankJ - 1);
+      end;
+      return neighbors;
+   end;
+
+   macro infeasible()
+      if (hamming() == 2)
+         var i = 0;
+         var j = 0;
+         while (i < N)
+            j = 0;
+            while (j < N - 1)
+               var swapedBoard = getSwapedBoard(i, j, i, j + 1);
+               if (swapedBoard.isGoal())
+                  return true;
+               end;
+               j = j + 1;
+            end;
+            i = i + 1;
+         end;
+      end;
+      return false;
+   end;
+
+   macro print()
+      Rep.AddEmptyStr();
+      var i = 0;
+      var j = 0;
+      while (i < N)
+         var cell = null;
+         for (cell, arr[i])
+            if (cell == BlankValue)
+               Rep.AddPrintCell( " ", CellWidth, 0, "c");
+            else
+               Rep.AddPrintCell( cell, CellWidth, 0, "c");
+            end;
+         end;
+         if (i == 0)
+            Rep.AddPrintCell( "", CellWidth*5, 0, "c:ex_B(l)", REP_ELEM_STR );
+            Rep.AddPrintCell( "ManHattan:  " + manhattan(), CellWidth*7, 0, "l", REP_ELEM_STR );
+         end;
+         if (i == 1)
+            Rep.AddPrintCell( "", CellWidth*5, 0, "c:ex_B(l)", REP_ELEM_STR );
+            Rep.AddPrintCell( "Moves:  " + NumberOfMoves, CellWidth*7, 0, "l", REP_ELEM_STR );
+         end;
+         if (i == 2)
+            Rep.AddPrintCell( "", CellWidth*5, 0, "c:ex_B(l)", REP_ELEM_STR );
+            Rep.AddPrintCell( "Proirity:  " + (manhattan() + NumberOfMoves), CellWidth*7, 0, "l:ex_FS(b)", REP_ELEM_STR );
+         end;
+         Rep.AddStr();
+         i = i + 1;
+      end; 
+      Rep.AddEmptyStr();
+   end;
+end;

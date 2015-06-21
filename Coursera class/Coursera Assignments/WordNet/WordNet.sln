@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WordNet", "WordNet\WordNet.vcxproj", "{45D78285-9E22-4914-A96B-B195720C7001}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4BFBEDE-9118-4AC1-AA3E-FCCEE138BF4F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WordNetTest", "WordNetTest\WordNetTest.vcxproj", "{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{45D78285-9E22-4914-A96B-B195720C7001} = {45D78285-9E22-4914-A96B-B195720C7001}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WordNetLauncher", "WordNetLauncher\WordNetLauncher.vcxproj", "{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45D78285-9E22-4914-A96B-B195720C7001}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Debug|Win32.ActiveCfg = Debug|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Debug|Win32.Build.0 = Debug|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Release|Any CPU.ActiveCfg = Release|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Release|Win32.ActiveCfg = Release|Win32
+		{45D78285-9E22-4914-A96B-B195720C7001}.Release|Win32.Build.0 = Release|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Debug|Win32.Build.0 = Debug|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Release|Any CPU.ActiveCfg = Release|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Release|Win32.ActiveCfg = Release|Win32
+		{EAC9E739-0B87-4661-ACD7-175DFACCDC2F}.Release|Win32.Build.0 = Release|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Debug|Win32.Build.0 = Debug|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Release|Any CPU.ActiveCfg = Release|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Release|Win32.ActiveCfg = Release|Win32
+		{A8B02B7F-E6DB-4DCC-95D8-DDCB1B9D33D6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,149 @@
+import "PriorityQueue.mac";
+
+private const Размер = 3;
+private const ПечатьДеталей = false;
+
+private var chosenBoards = TArray();
+
+macro ВыпускОтчета()
+   Rep.SetZoomType( ZOOM_TYPE_A4L, 1 );
+   Rep.SetWinRepOutput( 0, 0 );
+   Rep.AddWinRepOutput( WINREP_OUTPUT_EXCEL, WINREP_FORMAT_XLS );
+   if (ПечатьДеталей)
+      Rep.PrintWinRep( "Пятнашки. Шаг 1" ); 
+   else
+      Rep.PrintWinRep( "Пятнашки." ); 
+   end;
+   Rep.ShowWinRep();
+end;
+
+macro BoardIsAlreadyChosen(NewBoard:Board)
+   var b = null;
+   for (b, chosenBoards)
+      if (NewBoard.equals(b))
+         return true;
+      end;
+   end;
+   return false;
+end;
+
+macro НапечататьПредыдущуюПозицию(PrevBoard)
+   Rep.AddEmptyStr();
+   Rep.AddPrintCell( "Предыдущая позиция:", MaxWidth, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   PrevBoard.print();
+end;
+
+macro НапечататьТекущуюПозицию(CurBoard)
+   Rep.AddPrintCell( "Текущая позиция:", MaxWidth, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   CurBoard.print();
+end;
+
+macro НапечататьОчередь(priorQueue)
+   Rep.AddPrintCell( "В очереди:", MaxWidth, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   priorQueue.print();
+end;
+
+macro НапечататьВозможныеХоды(neighbors)
+   Rep.AddPrintCell( "Возможные ходы:", MaxWidth, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   var b = null;
+   for (b, neighbors)
+      b.print();
+   end;
+end;
+
+macro НапечататьВыбор(CurBoard)
+   Rep.AddPrintCell( "Выбор:", MaxWidth, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   CurBoard.print();
+end;
+
+macro InitFromArray()
+   var arr = TArray();
+
+   arr[0] = TArray();
+   arr[1] = TArray();
+   arr[2] = TArray();
+   arr[0][0] = 1;
+   arr[0][1] = 2;
+   arr[0][2] = 3;
+   arr[1][0] = 4;
+   arr[1][1] = 6;
+   arr[1][2] = 7;
+   arr[2][0] = 5;
+   arr[2][1] = 8;
+   arr[2][2] = 0;
+   return arr;
+end;
+
+var InitBoard = Board(Размер/*, InitFromArray()*/);
+var CurBoard = InitBoard;
+var PrevBoard = InitBoard;
+var TempBoard = InitBoard;
+var priorQueue = PriorityQueue();
+var computationalMoves = 0;
+
+if (not ПечатьДеталей)
+   InitBoard.print();
+end;
+
+while (not CurBoard.isGoal() and not CurBoard.infeasible())
+
+   if (ПечатьДеталей)
+      НапечататьПредыдущуюПозицию(PrevBoard);
+      НапечататьТекущуюПозицию(CurBoard);
+   end;
+   
+   chosenBoards[chosenBoards.size] = CurBoard;
+
+   TempBoard = CurBoard;
+   
+   NumberOfMoves = NumberOfMoves + 1;
+
+   var neighbors = CurBoard.getNeighbors();
+   var b = null;
+   for (b, neighbors)
+      if ((not PrevBoard.equals(b)) and (not BoardIsAlreadyChosen(b)))
+         priorQueue.insert(b);
+      end;
+   end;
+
+   var curElem:BoardElem = priorQueue.pop();
+   CurBoard = curElem.node;
+   NumberOfMoves = curElem.Moves;
+
+   if (ПечатьДеталей)
+      НапечататьВыбор(CurBoard);
+   end;
+
+   PrevBoard = TempBoard;
+   computationalMoves = computationalMoves + 1;
+
+   if (ПечатьДеталей)
+      Rep.AddNewSheetBreak("Шаг " + String(computationalMoves + 1));
+   end;
+end;
+
+Rep.AddEmptyStr();
+
+if (CurBoard.infeasible())
+   Rep.AddPrintCell( "Преобразовано к:", MaxWidth * 2, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   CurBoard.print();
+   Rep.AddPrintCell( "Задача не имеет решения.", MaxWidth * 2, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+end;
+
+if (CurBoard.isGoal())
+   Rep.AddPrintCell( "Задача может быть решена за " + NumberOfMoves + " шагов.", MaxWidth * 3, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+   Rep.AddPrintCell( "Потребовалось просмотреть " + computationalMoves + " различных вариантов.", MaxWidth * 3, 0, "c:ex_FS(b)", REP_ELEM_STR );
+   Rep.AddStr();
+end;
+
+ВыпускОтчета();
+
+end;

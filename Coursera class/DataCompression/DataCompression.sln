@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataCompression", "DataCompression\DataCompression.vcxproj", "{A154F84E-2853-4937-AF24-69ABD3E9FE1E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataCompressionTest", "DataCompressionTest\DataCompressionTest.vcxproj", "{85B95A22-882C-41B0-AD02-2BD17548075A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A154F84E-2853-4937-AF24-69ABD3E9FE1E} = {A154F84E-2853-4937-AF24-69ABD3E9FE1E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A154F84E-2853-4937-AF24-69ABD3E9FE1E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A154F84E-2853-4937-AF24-69ABD3E9FE1E}.Debug|Win32.Build.0 = Debug|Win32
+		{A154F84E-2853-4937-AF24-69ABD3E9FE1E}.Release|Win32.ActiveCfg = Release|Win32
+		{A154F84E-2853-4937-AF24-69ABD3E9FE1E}.Release|Win32.Build.0 = Release|Win32
+		{85B95A22-882C-41B0-AD02-2BD17548075A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85B95A22-882C-41B0-AD02-2BD17548075A}.Debug|Win32.Build.0 = Debug|Win32
+		{85B95A22-882C-41B0-AD02-2BD17548075A}.Release|Win32.ActiveCfg = Release|Win32
+		{85B95A22-882C-41B0-AD02-2BD17548075A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

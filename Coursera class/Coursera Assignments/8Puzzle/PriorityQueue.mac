@@ -1,0 +1,125 @@
+import "Board.mac";
+
+class BoardElem(node_:Board)
+   var node:Board = node_;
+   var Manhattan:integer = node_.manhattan();
+   var Moves:integer = NumberOfMoves;
+   var Priority = Manhattan + Moves;
+   var nextNode = null;
+end;
+
+class PriorityQueue()
+
+   var head:BoardElem = null;
+
+   macro insert(node:Board)
+      
+      macro lessPriority(queueElem:BoardElem, newNode:Board)
+         var newNodeManhattan = newNode.manhattan();
+         var queueElemManhattan = queueElem.Manhattan;
+         if (newNodeManhattan < queueElemManhattan)
+            return true;
+         elif (newNodeManhattan == queueElemManhattan) 
+            var newNodeMoves = NumberOfMoves;
+            var queueElemMoves = queueElem.Moves;
+            if (newNodeMoves < queueElemMoves)
+               return true;
+            elif (newNodeMoves == queueElemMoves)
+               var newNodeHamming = newNode.Hamming();
+               var queueElemHamming = queueElem.node.Hamming();
+               if (newNodeHamming < queueElemHamming)
+                  return true;
+               end;
+            end;
+         end;
+         return false;
+      end;
+
+      if (head == null)
+         head = BoardElem(node);
+      else
+         var curNode = head;
+         if (lessPriority(head, node))
+            head = BoardElem(node);
+            head.nextNode = curNode;
+            return;
+         end;
+
+         var prevNode = head;
+         while (curNode != null)
+            if (lessPriority(curNode, node))
+               prevNode.nextNode = BoardElem(node);
+               prevNode = prevNode.nextNode;
+               prevNode.nextNode = curNode;
+               return;
+            end;
+            prevNode = curNode;
+            curNode = curNode.nextNode;
+         end;
+         prevNode.nextNode = BoardElem(node);
+      end;
+   end;
+
+   macro pop()
+      var temp = head;
+      head = head.nextNode;
+      return temp; 
+   end;
+
+   macro print()
+      var dimension = head.node.dimension();
+
+      macro PrintOneBoardString(arr:TArray)
+         var j = 0;
+         while (j < dimension)
+            if (arr[j] == BlankValue)
+               Rep.AddPrintCell( " ", CellWidth, 0, "c");
+            else
+               Rep.AddPrintCell( arr[j], CellWidth, 0, "c");
+            end;
+            j = j + 1;
+         end;
+         Rep.AddPrintCell( " ", CellWidth, 0, "c:ex_B(l)");
+      end;
+
+      Rep.AddEmptyStr();
+      var i = 0;
+      
+      var temp = null;
+      while (i < dimension)
+         temp = head;
+         while (temp != null)
+            PrintOneBoardString(temp.node.getBoard()[i]);
+            temp = temp.nextNode;
+         end;
+         Rep.AddStr();
+         i = i + 1;
+      end;
+
+      temp = head;
+      while (temp != null)
+         Rep.AddPrintCell( "ManHattan: " + temp.Manhattan, CellWidth*4, 0, "l", REP_ELEM_STR );
+         Rep.AddPrintCell( " ", CellWidth, 0, "c:ex_B()");
+         temp = temp.nextNode;
+      end;
+      Rep.AddStr();
+
+      temp = head;
+      while (temp != null)
+         Rep.AddPrintCell( "Moves: " + temp.Moves, CellWidth*4, 0, "l", REP_ELEM_STR );
+         Rep.AddPrintCell( " ", CellWidth, 0, "c:ex_B()");
+         temp = temp.nextNode;
+      end;
+      Rep.AddStr();
+
+      temp = head;
+      while (temp != null)
+         Rep.AddPrintCell( "Priority: " + (temp.Manhattan + temp.Moves), CellWidth*4, 0, "l:ex_FS(b)", REP_ELEM_STR );
+         Rep.AddPrintCell( " ", CellWidth, 0, "c:ex_B()");
+         temp = temp.nextNode;
+      end;
+      Rep.AddStr();
+
+      Rep.AddEmptyStr();
+   end;
+end;

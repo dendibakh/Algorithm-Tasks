@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaxSetBit", "MaxSetBit\MaxSetBit.vcxproj", "{03E20E24-0C1C-4F8A-A872-BA1D697C1856}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaxSetBitTest", "MaxSetBitTest\MaxSetBitTest.vcxproj", "{92A69CCB-2FB0-4B98-A1DB-51DB5B530FE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{21CC73A1-0FD9-49C2-88BD-1D592E82F163}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		MaxSetBit.vsmdi = MaxSetBit.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MaxSetBit.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03E20E24-0C1C-4F8A-A872-BA1D697C1856}.Debug|Win32.ActiveCfg = Debug|Win32
+		{03E20E24-0C1C-4F8A-A872-BA1D697C1856}.Debug|Win32.Build.0 = Debug|Win32
+		{03E20E24-0C1C-4F8A-A872-BA1D697C1856}.Release|Win32.ActiveCfg = Release|Win32
+		{03E20E24-0C1C-4F8A-A872-BA1D697C1856}.Release|Win32.Build.0 = Release|Win32
+		{92A69CCB-2FB0-4B98-A1DB-51DB5B530FE8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{92A69CCB-2FB0-4B98-A1DB-51DB5B530FE8}.Debug|Win32.Build.0 = Debug|Win32
+		{92A69CCB-2FB0-4B98-A1DB-51DB5B530FE8}.Release|Win32.ActiveCfg = Release|Win32
+		{92A69CCB-2FB0-4B98-A1DB-51DB5B530FE8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

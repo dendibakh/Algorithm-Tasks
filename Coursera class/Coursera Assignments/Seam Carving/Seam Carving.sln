@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Seam Carving", "Seam Carving\Seam Carving.vcxproj", "{23F692D8-C218-4533-BBC6-AA8099F1793D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeamCarvingUnitTest", "SeamCarvingUnitTest\SeamCarvingUnitTest.vcxproj", "{B363D7D3-DB00-4EE6-B025-944F3784F739}"
+	ProjectSection(ProjectDependencies) = postProject
+		{23F692D8-C218-4533-BBC6-AA8099F1793D} = {23F692D8-C218-4533-BBC6-AA8099F1793D}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5043AD45-4BFC-4EBF-A441-05C0FDEF6356}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Performance1.psess = Performance1.psess
+		Seam Carving.vsmdi = Seam Carving.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeamCarvingLauncher", "SeamCarvingLauncher\SeamCarvingLauncher.vcxproj", "{9A97D7B6-F6E4-40A4-85B0-67E3F4B20BD3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{23F692D8-C218-4533-BBC6-AA8099F1793D} = {23F692D8-C218-4533-BBC6-AA8099F1793D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Seam Carving.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23F692D8-C218-4533-BBC6-AA8099F1793D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{23F692D8-C218-4533-BBC6-AA8099F1793D}.Debug|Win32.Build.0 = Debug|Win32
+		{23F692D8-C218-4533-BBC6-AA8099F1793D}.Release|Win32.ActiveCfg = Release|Win32
+		{23F692D8-C218-4533-BBC6-AA8099F1793D}.Release|Win32.Build.0 = Release|Win32
+		{B363D7D3-DB00-4EE6-B025-944F3784F739}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B363D7D3-DB00-4EE6-B025-944F3784F739}.Debug|Win32.Build.0 = Debug|Win32
+		{B363D7D3-DB00-4EE6-B025-944F3784F739}.Release|Win32.ActiveCfg = Release|Win32
+		{B363D7D3-DB00-4EE6-B025-944F3784F739}.Release|Win32.Build.0 = Release|Win32
+		{9A97D7B6-F6E4-40A4-85B0-67E3F4B20BD3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9A97D7B6-F6E4-40A4-85B0-67E3F4B20BD3}.Debug|Win32.Build.0 = Debug|Win32
+		{9A97D7B6-F6E4-40A4-85B0-67E3F4B20BD3}.Release|Win32.ActiveCfg = Release|Win32
+		{9A97D7B6-F6E4-40A4-85B0-67E3F4B20BD3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы\LZW">
+      <UniqueIdentifier>{49a159fb-71aa-4727-ab20-3665dbda7bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\LZW">
+      <UniqueIdentifier>{ea2060cd-c6e6-405e-97d1-5679f6a63d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Huffman">
+      <UniqueIdentifier>{17190d30-5461-486e-81d4-361549ac5106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Huffman">
+      <UniqueIdentifier>{1813bfc0-b5d7-4e4b-8915-5a546b7f4db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\RunLenghtCoding">
+      <UniqueIdentifier>{e2aa7c73-338f-44cc-a4b9-a36d86864d04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\RunLenghtCoding">
+      <UniqueIdentifier>{f6758045-d329-4dfe-a850-42f9e16b3135}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="utils.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="LZWCompression.h">
+      <Filter>Заголовочные файлы\LZW</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffmanCompression.h">
+      <Filter>Заголовочные файлы\Huffman</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffmanTrie.h">
+      <Filter>Заголовочные файлы\Huffman</Filter>
+    </ClInclude>
+    <ClInclude Include="RunLenghtCoding.h">
+      <Filter>Заголовочные файлы\RunLenghtCoding</Filter>
+    </ClInclude>
+    <ClInclude Include="TernarySearchTrie.h">
+      <Filter>Заголовочные файлы\LZW</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="utils.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="LZWCompression.cpp">
+      <Filter>Файлы исходного кода\LZW</Filter>
+    </ClCompile>
+    <ClCompile Include="HuffmanCompression.cpp">
+      <Filter>Файлы исходного кода\Huffman</Filter>
+    </ClCompile>
+    <ClCompile Include="HuffmanTrie.cpp">
+      <Filter>Файлы исходного кода\Huffman</Filter>
+    </ClCompile>
+    <ClCompile Include="RunLenghtCoding.cpp">
+      <Filter>Файлы исходного кода\RunLenghtCoding</Filter>
+    </ClCompile>
+    <ClCompile Include="TernarySearchTrie.cpp">
+      <Filter>Файлы исходного кода\LZW</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

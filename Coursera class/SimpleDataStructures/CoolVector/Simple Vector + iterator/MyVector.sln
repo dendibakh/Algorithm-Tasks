@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyVector", "MyVector\MyVector.vcxproj", "{407934F9-D0D4-43BF-AD95-7FCEF116CAE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{023939F0-969D-4FD6-88DC-5E0B731B269F}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		MyVector.vsmdi = MyVector.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyVectorUnitTest", "MyVectorUnitTest\MyVectorUnitTest.vcxproj", "{7C448DCF-1ED1-4229-BD35-6002650C175E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{407934F9-D0D4-43BF-AD95-7FCEF116CAE6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{407934F9-D0D4-43BF-AD95-7FCEF116CAE6}.Debug|Win32.Build.0 = Debug|Win32
+		{407934F9-D0D4-43BF-AD95-7FCEF116CAE6}.Release|Win32.ActiveCfg = Release|Win32
+		{407934F9-D0D4-43BF-AD95-7FCEF116CAE6}.Release|Win32.Build.0 = Release|Win32
+		{7C448DCF-1ED1-4229-BD35-6002650C175E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7C448DCF-1ED1-4229-BD35-6002650C175E}.Debug|Win32.Build.0 = Debug|Win32
+		{7C448DCF-1ED1-4229-BD35-6002650C175E}.Release|Win32.ActiveCfg = Release|Win32
+		{7C448DCF-1ED1-4229-BD35-6002650C175E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MyVector.vsmdi
+	EndGlobalSection
+EndGlobal

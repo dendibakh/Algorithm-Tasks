@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kd-Trees", "source\Kd-Trees.vcproj", "{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1} = {EDDFD935-AC6F-4908-BCE6-244D7B8800A1}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppUnitLite", "CppUnitLite\CppUnitLite.vcproj", "{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		DebugCA|Win32 = DebugCA|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}.Debug|Win32.ActiveCfg = Debug|Win32
+		{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}.Debug|Win32.Build.0 = Debug|Win32
+		{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}.DebugCA|Win32.ActiveCfg = Debug|Win32
+		{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}.DebugCA|Win32.Build.0 = Debug|Win32
+		{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}.Release|Win32.ActiveCfg = Release|Win32
+		{20A7A10F-FCC9-47DC-8F22-1C37FE187D24}.Release|Win32.Build.0 = Release|Win32
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}.Debug|Win32.Build.0 = Debug|Win32
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}.DebugCA|Win32.ActiveCfg = DebugCA|Win32
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}.DebugCA|Win32.Build.0 = DebugCA|Win32
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}.Release|Win32.ActiveCfg = Release|Win32
+		{EDDFD935-AC6F-4908-BCE6-244D7B8800A1}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
