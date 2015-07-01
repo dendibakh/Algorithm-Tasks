@@ -7,15 +7,14 @@ ARCHIVE_TOOL = ar
 COMPILE_FLAGS = -c -Wall -Werror
 
 EXE_NAME = BurrowsWheelerCompression
-HEADER_DIR = ./src/h/
 SOURCES_DIR = ./src/
 
 LIB_NAME = BurrowsWheeler
 LIB_SOURCES_DIR = ./src/BurrowsWheelerLib/
+HEADER_DIR = $(LIB_SOURCES_DIR)/h/
 
 TEST_NAME = BurrowsWheelerTest
 TEST_SOURCES_DIR = ./test/
-TEST_HEADER_DIR = ./test/h/
 
 OBJ_DIR = ./obj/
 
@@ -24,6 +23,11 @@ ADD_LIBRARIES_DIR = -L./lib/
 ADD_LIBRARIES = -lgmock_main
 
 ADD_HEADERS_DIR = ./include/
+
+# BurrowsWheelerCompression objects
+EXE_SOURCES = $(wildcard $(SOURCES_DIR)*.cpp)
+EXE_OBJECTS = $(subst $(SOURCES_DIR),$(OBJ_DIR),$(EXE_SOURCES:%.cpp=%.o))
+EXE_FILENAMES = $(subst $(SOURCES_DIR),,$(EXE_SOURCES:%.cpp=%))
 
 # BurrowsWheelerLib objects
 LIB_SOURCES = $(wildcard $(LIB_SOURCES_DIR)*.cpp)
@@ -36,9 +40,9 @@ TEST_OBJECTS = $(subst $(TEST_SOURCES_DIR),$(OBJ_DIR),$(TEST_SOURCES:%.cpp=%.o))
 TEST_FILENAMES = $(subst $(TEST_SOURCES_DIR),,$(TEST_SOURCES:%.cpp=%))
 
 # labels definition
-all: clean BurrowsWheelerLib tests run_tests
+all: clean BurrowsWheelerLib tests run_tests BurrowsWheelerCompressionExe
 
-.PHONY: all BurrowsWheelerLib tests clean run_tests
+.PHONY: all BurrowsWheelerLib tests clean run_tests BurrowsWheelerCompressionExe
 
 clean:
 	rm -r -f $(OBJ_DIR)
@@ -65,3 +69,12 @@ build_tests:
 #execute tests
 run_tests:
 	$(OBJ_DIR)$(TEST_NAME)
+
+#build BurrowsWheelerCompression executable
+BurrowsWheelerCompressionExe: $(EXE_FILENAMES) build_executable
+
+$(EXE_FILENAMES):
+	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(SOURCES_DIR)$@.cpp
+
+build_executable:
+	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(EXE_NAME) $(EXE_OBJECTS) -L$(OBJ_DIR) -l$(LIB_NAME)
