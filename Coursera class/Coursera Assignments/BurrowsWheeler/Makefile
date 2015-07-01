@@ -19,12 +19,11 @@ TEST_HEADER_DIR = ./test/h/
 
 OBJ_DIR = ./obj/
 
-ADD_LIBRARIES_DIR = ./lib/
-ADD_LIBRARIES = gtest_main
+ADD_LIBRARIES_DIR = -L./lib/
+#ADD_LIBRARIES = -lgtest_main
+ADD_LIBRARIES = -lgmock_main
 
 ADD_HEADERS_DIR = ./include/
-GTEST_HEADERS = ./include/gtest/*.h \
-                ./include/gtest/internal/*.h
 
 # BurrowsWheelerLib objects
 LIB_SOURCES = $(wildcard $(LIB_SOURCES_DIR)*.cpp)
@@ -61,7 +60,7 @@ $(TEST_FILENAMES):
 	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(TEST_SOURCES_DIR)$@.cpp
 
 build_tests:
-	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) -L$(ADD_LIBRARIES_DIR) -l$(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
+	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
 	
 #execute tests
 run_tests:
