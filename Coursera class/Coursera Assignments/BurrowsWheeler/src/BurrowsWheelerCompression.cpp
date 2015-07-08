@@ -1,4 +1,4 @@
-#include "HuffmanCompression.h"
+#include "BurrowsWheeler.h"
 
 int main()
 {
