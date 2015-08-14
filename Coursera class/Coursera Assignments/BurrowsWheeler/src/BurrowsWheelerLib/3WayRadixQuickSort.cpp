@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace ThreeWayRadixQsort_modifiedKeyIndexCounting_IndexStr
+namespace ThreeWayRadixQsort_CircullarIndexStr
 {
 	void exchange(CircullarIndexStrSet& set, int pos1, int pos2)
 	{
@@ -50,7 +50,7 @@ namespace ThreeWayRadixQsort_modifiedKeyIndexCounting_IndexStr
 
 CircullarIndexStrSet ThreeWayRadixQuickSort(const CircullarIndexStrSet& set)
 {
-	using namespace ThreeWayRadixQsort_modifiedKeyIndexCounting_IndexStr;
+	using namespace ThreeWayRadixQsort_CircullarIndexStr;
 	CircullarIndexStrSet retSet(set);
 	DoSort(retSet, 0, 0, retSet.size() - 1);
 	return retSet;
@@ -58,6 +58,6 @@ CircullarIndexStrSet ThreeWayRadixQuickSort(const CircullarIndexStrSet& set)
 
 void ThreeWayRadixQuickSort_NoConst(CircullarIndexStrSet& set)
 {
-	using namespace ThreeWayRadixQsort_modifiedKeyIndexCounting_IndexStr;
+	using namespace ThreeWayRadixQsort_CircullarIndexStr;
 	DoSort(set, 0, 0, set.size() - 1);
 }

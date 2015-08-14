@@ -10,15 +10,15 @@ TEST(ThreeWayRadixQuickSort, constructCircSuffixArray)
     CircullarIndexStrSet circSuffixArray;
 
     size_t N = str.size();
-    for (size_t i = N; i > 0; --i)
+    for (size_t i = 0; i < N; ++i)
         circSuffixArray.push_back(CircullarIndexString(str, i));
 
     CircullarIndexStrSet etalonCircSuffixArray;
     std::string one("ABRA!");
-    std::string two("!ABRA");
-    std::string three("A!ABR");
-    std::string four("RA!AB");
-    std::string five("BRA!A");
+    std::string two("BRA!A");
+    std::string three("RA!AB");
+    std::string four("A!ABR");
+    std::string five("!ABRA");
     etalonCircSuffixArray.push_back(one);
     etalonCircSuffixArray.push_back(two);
     etalonCircSuffixArray.push_back(three);
@@ -35,10 +35,10 @@ TEST(ThreeWayRadixQuickSort, sortCircSuffixArray)
     CircullarIndexStrSet circSuffixArray;
 
     size_t N = str.size();
-    for (size_t i = N; i > 0; --i)
+    for (size_t i = 0; i < N; ++i)
         circSuffixArray.push_back(CircullarIndexString(str, i));
 
-    CircullarIndexStrSet sortedCircSuffixArray = ThreeWayRadixQuickSort(circSuffixArray);
+    ThreeWayRadixQuickSort_NoConst(circSuffixArray);
 
     CircullarIndexStrSet etalonSortedCircSuffixArray;
     std::string one("!ABRA");
@@ -51,6 +51,42 @@ TEST(ThreeWayRadixQuickSort, sortCircSuffixArray)
     etalonSortedCircSuffixArray.push_back(three);
     etalonSortedCircSuffixArray.push_back(four);
     etalonSortedCircSuffixArray.push_back(five);
+
+    for (size_t i = 0; i < N; ++i)
+        EXPECT_TRUE(circSuffixArray[i] == etalonSortedCircSuffixArray[i]);
+}
+
+TEST(ThreeWayRadixQuickSort, sortCircSuffixArray_emptyString)
+{
+    std::string str = "";
+    CircullarIndexStrSet circSuffixArray;
+
+    size_t N = str.size();
+    for (size_t i = 0; i < N; ++i)
+        circSuffixArray.push_back(CircullarIndexString(str, i));
+
+    CircullarIndexStrSet sortedCircSuffixArray = ThreeWayRadixQuickSort(circSuffixArray);
+
+    CircullarIndexStrSet etalonSortedCircSuffixArray;
+
+    for (size_t i = 0; i < N; ++i)
+        EXPECT_TRUE(sortedCircSuffixArray[i] == etalonSortedCircSuffixArray[i]);
+}
+
+TEST(ThreeWayRadixQuickSort, sortCircSuffixArray_OneSymbol)
+{
+    std::string str = "!";
+    CircullarIndexStrSet circSuffixArray;
+
+    size_t N = str.size();
+    for (size_t i = 0; i < N; ++i)
+        circSuffixArray.push_back(CircullarIndexString(str, i));
+
+    CircullarIndexStrSet sortedCircSuffixArray = ThreeWayRadixQuickSort(circSuffixArray);
+
+    CircullarIndexStrSet etalonSortedCircSuffixArray;
+    std::string one("!");
+    etalonSortedCircSuffixArray.push_back(one);
 
     for (size_t i = 0; i < N; ++i)
         EXPECT_TRUE(sortedCircSuffixArray[i] == etalonSortedCircSuffixArray[i]);

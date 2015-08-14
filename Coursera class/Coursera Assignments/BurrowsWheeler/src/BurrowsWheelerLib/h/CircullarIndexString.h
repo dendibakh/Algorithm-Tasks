@@ -11,6 +11,7 @@ public:
 	CircullarIndexString(const std::string& str, size_t begin);
 
 	std::string getString() const;
+	size_t size() const;
 	size_t getBegin() const;
 	char operator[](size_t index) const;
 	bool operator==(const CircullarIndexString& rhs) const;

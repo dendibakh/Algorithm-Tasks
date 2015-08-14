@@ -24,6 +24,12 @@ std::string CircullarIndexString::getString() const
 	return std::string(str->substr(begin, str->size() - begin) + str->substr(0, begin));
 }
 
+size_t CircullarIndexString::size() const
+{
+        validate();	
+        return str->size();
+}
+
 size_t CircullarIndexString::getBegin() const
 {
 	return begin;
