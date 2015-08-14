@@ -72,3 +72,33 @@ TEST(CircullarSuffixArrayTest, test3)
     {
     }
 }
+
+TEST(CircullarSuffixArrayTest, test4_courseraExample)
+{
+    std::string str = "ABRACADABRA!";
+    CircullarSuffixArrayFake array(str);
+
+    EXPECT_EQ(12u, array.getLenght());
+
+    EXPECT_EQ(11u, array.getIndex(0u));
+    EXPECT_EQ(10u, array.getIndex(1u));
+    EXPECT_EQ(7u, array.getIndex(2u));
+    EXPECT_EQ(0u, array.getIndex(3u));
+    EXPECT_EQ(3u, array.getIndex(4u));
+    EXPECT_EQ(5u, array.getIndex(5u));
+    EXPECT_EQ(8u, array.getIndex(6u));
+    EXPECT_EQ(1u, array.getIndex(7u));
+    EXPECT_EQ(4u, array.getIndex(8u));
+    EXPECT_EQ(6u, array.getIndex(9u));
+    EXPECT_EQ(9u, array.getIndex(10u));
+    EXPECT_EQ(2u, array.getIndex(11u));
+
+    try	
+    {
+        array.getIndex(12u);
+        FAIL() << "There must be an exception";
+    }
+    catch(std::exception& e)
+    {
+    }
+}

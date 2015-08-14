@@ -31,3 +31,8 @@ bool CircullarSuffixArray::validate() const
 {
     return 0 != circSuffixArray.size();
 }
+
+const CircullarIndexStrSet& CircullarSuffixArray::getSet() const
+{
+    return circSuffixArray;
+}
