@@ -19,7 +19,7 @@ private:
 class BurrowsWheelerDecode
 {
 public:
-    typedef std::pair<char, size_t> elem;
+    typedef std::pair<unsigned char, size_t> elem;
 private:
     struct comparator
     {

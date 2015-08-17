@@ -110,3 +110,11 @@ TEST(BurrowsWheelerTransformTest, test5_stress)
     BurrowsWheelerDecode BWDecode(BWTransform.getOriginalStringRow(), BWTransform.getTransformedStr());
     EXPECT_TRUE(str == BWDecode.getOriginalString());
 }
+
+TEST(BurrowsWheelerTransformTest, test6_NotASCII)
+{
+    std::string str("—become essential parts— of modern software systems.And these are but— a few examples—as the");
+    BurrowsWheelerTransform BWTransform(str);
+    BurrowsWheelerDecode BWDecode(BWTransform.getOriginalStringRow(), BWTransform.getTransformedStr());
+    EXPECT_TRUE(str == BWDecode.getOriginalString());
+}
