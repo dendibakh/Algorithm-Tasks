@@ -2,8 +2,6 @@
 #include "gmock/gmock.h"
 #include "BurrowsWheelerTransform.h"
 
-#include <iostream>
-
 using namespace testing;
 
 TEST(BurrowsWheelerTransformTest, test1)
