@@ -15,3 +15,26 @@ private:
     size_t originalStringRow;
     std::string transformedStr;
 };
+
+class BurrowsWheelerDecode
+{
+public:
+    typedef std::pair<char, size_t> elem;
+private:
+    struct comparator
+    {
+        bool operator()(const elem& lhs, const elem& rhs) const
+        {
+            return lhs.first < rhs.first;
+        }
+    };
+public:
+    BurrowsWheelerDecode(size_t originalStringRow, const std::string& str);
+    virtual ~BurrowsWheelerDecode();
+
+    std::string getOriginalString() const;
+private:
+    std::string originalString;
+protected:
+    std::vector<elem> sortedStr;
+};

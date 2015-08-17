@@ -1,4 +1,5 @@
 #include "BurrowsWheelerTransform.h"
+#include <algorithm> 
 
 BurrowsWheelerTransform::BurrowsWheelerTransform(const std::string& str) : suffixArray(str) , originalStringRow(0)
 {
@@ -24,4 +25,32 @@ size_t BurrowsWheelerTransform::getOriginalStringRow() const
 std::string BurrowsWheelerTransform::getTransformedStr() const
 {
     return transformedStr;
+}
+
+BurrowsWheelerDecode::BurrowsWheelerDecode(size_t originalStringRow, const std::string& str) : sortedStr(str.size())
+{
+    size_t N = str.size();
+    for (size_t i = 0; i < N; ++i)
+    {
+        sortedStr[i].first = str[i];
+        sortedStr[i].second = i;
+    }
+    
+    std::stable_sort(sortedStr.begin(), sortedStr.end(), comparator());
+
+    size_t curElem = originalStringRow;
+    for (size_t i = 0; i < N; ++i)
+    {
+        originalString += sortedStr[curElem].first;
+        curElem = sortedStr[curElem].second;
+    }
+}
+
+BurrowsWheelerDecode::~BurrowsWheelerDecode()
+{
+}
+
+std::string BurrowsWheelerDecode::getOriginalString() const
+{
+    return originalString;
 }
