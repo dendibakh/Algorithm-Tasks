@@ -11,7 +11,7 @@ namespace
     };
 }
 
-MoveToFront::encodedResult MoveToFront::radixArray;
+MoveToFront::RadixArray MoveToFront::radixArray;
 
 MoveToFront::MoveToFront()
 {
@@ -25,20 +25,19 @@ MoveToFront::MoveToFront()
 MoveToFront::encodedResult MoveToFront::encode(const std::string& input)
 {
    size_t N = input.size();
-   encodedResult moveToFrontArray(radixArray);
+   RadixArray moveToFrontArray(radixArray);
    encodedResult result(N, 0);
-   encodedResult::iterator iter = result.begin();
-   for (size_t i = 0; i < N; ++i, ++iter)
+   for (size_t i = 0; i < N; ++i)
    {
        unsigned char cur = input[i];
        unsigned char index = 0;
-       for (encodedResult::iterator moveToFrontIter = moveToFrontArray.begin(); moveToFrontIter != moveToFrontArray.end(); ++moveToFrontIter, ++index)
+       for (RadixArray::iterator moveToFrontIter = moveToFrontArray.begin(); moveToFrontIter != moveToFrontArray.end(); ++moveToFrontIter, ++index)
        {
            if (cur == *moveToFrontIter)
            {
                moveToFrontArray.erase(moveToFrontIter);
                moveToFrontArray.push_front(cur);
-               *iter = index;
+               result[i] = index;
                break;
            }
        }
@@ -48,5 +47,24 @@ MoveToFront::encodedResult MoveToFront::encode(const std::string& input)
 
 std::string MoveToFront::decode(const encodedResult& input)
 {
-    return "";
+   size_t N = input.size();
+   std::string decodedStr(N, '\0');
+   RadixArray moveToFrontArray(radixArray);
+   for (size_t i = 0; i < N; ++i)
+   {
+      unsigned char curIndex = input[i];
+      RadixArray::iterator moveToFrontIter = moveToFrontArray.begin();
+      for (unsigned char index = 0; moveToFrontIter != moveToFrontArray.end(); ++moveToFrontIter, ++index)
+      {
+         if (curIndex == index)
+         {
+             unsigned char symbolToFront = *moveToFrontIter;
+             moveToFrontArray.erase(moveToFrontIter);
+             moveToFrontArray.push_front(symbolToFront);
+             decodedStr[i] = symbolToFront;
+             break;
+         }
+      }
+   }
+   return decodedStr;
 }
