@@ -7,7 +7,8 @@
 class MoveToFront
 {
 public:
-    typedef std::vector<unsigned char> encodedResult;
+    //typedef std::vector<unsigned char> encodedResult;
+    typedef std::string encodedResult;
     typedef std::list<unsigned char> RadixArray;
     MoveToFront();
 

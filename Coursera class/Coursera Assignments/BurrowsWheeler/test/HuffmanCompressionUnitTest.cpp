@@ -6,20 +6,20 @@
 using namespace testing;
 
 template <class T>
+void checkTwoVectorsAreEqual(const T& lhs, const T& rhs)
+{
+    EXPECT_EQ(lhs.size(), rhs.size());
+    EXPECT_TRUE(std::equal(lhs.begin(), lhs.end(), rhs.begin()));
+}
+
+template <class T>
 void checkTwoMatrixAreEqual(const T& lhs, const T& rhs)
 {
     EXPECT_EQ(lhs.size(), rhs.size());
     for (size_t i = 0; i < lhs.size(); ++i)
     {
-    	checkTwoVectorsAreEqual(lhs[i], rhs[i]);
+        checkTwoVectorsAreEqual(lhs[i], rhs[i]);
     }
-}
-
-template <class T>
-void checkTwoVectorsAreEqual(const T& lhs, const T& rhs)
-{
-    EXPECT_EQ(lhs.size(), rhs.size());
-    EXPECT_TRUE(std::equal(lhs.begin(), lhs.end(), rhs.begin()));
 }
 
 class HuffmanAlgorithmFake : public HuffmanAlgorithm
