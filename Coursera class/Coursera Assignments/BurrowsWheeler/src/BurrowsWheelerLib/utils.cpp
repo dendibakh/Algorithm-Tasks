@@ -1,4 +1,6 @@
 #include "utils.h"
+#include <fstream>
+#include <stdexcept>
 
 std::vector<bool> getBinaryRepresentation(char symbol)
 {
@@ -63,4 +65,23 @@ size_t getValue(const std::vector<bool>::const_iterator& BinaryRepresentation_be
         *c = getSymbol(BinaryRepresentation_begin + 8 * i, BinaryRepresentation_begin + 8 * (i + 1));
     }
     return OriginalStringRow;
+}
+
+std::string readFile(const std::string& fileName)
+{
+    std::ifstream file(fileName.c_str(), std::ifstream::in);
+    if (!file.good())
+        throw std::runtime_error("Can't open the file: " + fileName + ".");
+
+    std::string fileContents;
+    while(file.good() && !file.eof())
+    {
+        std::string str;
+        std::getline(file, str);
+        if (!str.empty())
+            fileContents += str;
+        if (!file.eof())
+            fileContents += '\n';
+    }
+    return fileContents;
 }

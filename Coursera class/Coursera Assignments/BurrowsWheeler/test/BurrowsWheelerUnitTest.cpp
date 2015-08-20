@@ -1,8 +1,11 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 #include "BurrowsWheeler.h"
+#include "utils.h"
 
 using namespace testing;
+
+#include <iostream>
 
 #define UNUSED_VARIABLE(x) (void)x
 
@@ -82,4 +85,28 @@ TEST_F(BurrowsWheelerTest, combinedTest3)
     std::cout << "Comression rate = " << (float)originalSize / compressedSize << std::endl;
     */
     // For this case Comression rate = 1.99296.
+}
+
+// Comression rates for the example from TEST_F(BurrowsWheelerTest, combinedTest3):
+// - Huffman - 1.766.
+// - BurrowsWheeler - 1.99296.
+// - LZW - 1.03
+
+TEST_F(BurrowsWheelerTest, BenchMarkTest1)
+{
+    //std::string str(readFile("./test/samples/starr.txt"));
+    std::string str(readFile("./test/samples/nomatch.txt"));
+
+    BurrowsWheelerFake obj;
+    BurrowsWheeler::compressedResult compressed = obj.encode(str);
+    std::string decoded = obj.decode(compressed);
+    EXPECT_TRUE(str == decoded);
+    
+    size_t originalSize = str.size() * 8;
+    size_t compressedSize = compressed.size();
+    std::cout << "originalSize = " << originalSize << std::endl;
+    std::cout << "compressedSize = " << compressedSize << std::endl;
+    std::cout << "Comression rate = " << (float)originalSize / compressedSize << std::endl;
+
+    // For this case Comression rate = .
 }

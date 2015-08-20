@@ -3,6 +3,8 @@
 #include "utils.h"
 #include <algorithm>
 
+#include <iostream>
+
 using namespace testing;
 
 template <class T>
@@ -92,4 +94,18 @@ TEST(utilsUnitTest, test10)
      std::vector<bool> binaryRepresentation = getBinaryRepresentation(value);
      size_t expanded = getValue(binaryRepresentation);
      EXPECT_EQ(value, expanded);
+}
+
+TEST(utilsUnitTest, test11)
+{
+     std::string fileContents = readFile("./test/samples/abbbaabbbbaccabbaaabc.txt");
+     std::string etalon = "abbbaabbbbaccabbaaabc";
+     EXPECT_EQ(etalon, fileContents);
+}
+
+TEST(utilsUnitTest, test12)
+{
+     std::string fileContents = readFile("./test/samples/nomatch.txt");
+     std::string etalon = "abcdefg\nhijklmnopqrstuvw\nxyzABCDEFGHIJKLMNOPQRS\nTUVWXYZ1234567890!@#$%^&*()\n";
+     EXPECT_EQ(etalon, fileContents);
 }
