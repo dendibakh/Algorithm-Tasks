@@ -15,6 +15,7 @@ HEADER_DIR = $(LIB_SOURCES_DIR)/h/
 
 TEST_NAME = BurrowsWheelerTest
 TEST_SOURCES_DIR = ./test/
+BENCHMARK_TEST_SOURCES_DIR = ./test/benchmarkTest/
 
 OBJ_DIR = ./obj/
 
@@ -39,6 +40,11 @@ TEST_SOURCES = $(wildcard $(TEST_SOURCES_DIR)*.cpp)
 TEST_OBJECTS = $(subst $(TEST_SOURCES_DIR),$(OBJ_DIR),$(TEST_SOURCES:%.cpp=%.o))
 TEST_FILENAMES = $(subst $(TEST_SOURCES_DIR),,$(TEST_SOURCES:%.cpp=%))
 
+# benchmark tests objects
+BENCHMARK_TEST_SOURCES = $(wildcard $(BENCHMARK_TEST_SOURCES_DIR)*.cpp)
+BENCHMARK_TEST_OBJECTS = $(subst $(BENCHMARK_TEST_SOURCES_DIR),$(OBJ_DIR),$(BENCHMARK_TEST_SOURCES:%.cpp=%.o))
+BENCHMARK_TEST_FILENAMES = $(subst $(BENCHMARK_TEST_SOURCES_DIR),,$(BENCHMARK_TEST_SOURCES:%.cpp=%))
+
 # labels definition
 all: clean BurrowsWheelerLib tests run_tests BurrowsWheelerCompressionExe
 
@@ -58,13 +64,16 @@ build_lib:
 	$(ARCHIVE_TOOL) rcs $(OBJ_DIR)lib$(LIB_NAME).a $(LIB_OBJECTS)
 
 #building tests
-tests: $(TEST_FILENAMES) build_tests
+tests: $(TEST_FILENAMES) $(BENCHMARK_TEST_FILENAMES) build_tests
 
 $(TEST_FILENAMES):
 	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(TEST_SOURCES_DIR)$@.cpp
 
+$(BENCHMARK_TEST_FILENAMES):
+	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(BENCHMARK_TEST_SOURCES_DIR)$@.cpp
+
 build_tests:
-	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
+	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(BENCHMARK_TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
 	
 #execute tests
 run_tests:
