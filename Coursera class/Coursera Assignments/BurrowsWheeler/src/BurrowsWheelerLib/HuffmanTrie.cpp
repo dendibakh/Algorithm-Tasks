@@ -157,30 +157,38 @@ std::string HuffmanTrie::expand(const compressedResult& comrText) const
 {
 	std::string result;
 	if (root->isLeaf())
+	{
 		result.append(comrText.size(), root->symbol);
+	}
 	else
-		expand(root, comrText.begin(), comrText.end(), result);
+	{
+	        compressedResult::const_iterator iter = comrText.begin();
+	        compressedResult::const_iterator endIter = comrText.end();
+	        while ( iter != endIter )
+	        {
+		    expand(root, iter, endIter, result);
+		}
+	}
 	return result;
 }
 
-void HuffmanTrie::expand(Node* n, const compressedResult::const_iterator& iter, const compressedResult::const_iterator& endIter, std::string& result) const
+void HuffmanTrie::expand(Node* n, compressedResult::const_iterator& iter, const compressedResult::const_iterator& endIter, std::string& result) const
 {
 	if (n)
 	{
 		if (n->isLeaf())
 		{
 			result += n->symbol;
-			expand(root, iter, endIter, result);
 		}
 		else if (iter != endIter)
 		{
 			if (*iter == true)
 			{
-				expand(n->right, iter + 1, endIter, result);
+				expand(n->right, ++iter, endIter, result);
 			}
 			else if (*iter == false)
 			{
-				expand(n->left, iter + 1, endIter, result);
+				expand(n->left, ++iter, endIter, result);
 			}
 		}
 	}

@@ -30,7 +30,7 @@ private: // implementation details
 	void getLeftTraversal(Node* n, TrieRows& rows, size_t level) const;
 
 	void getSymbolTable(Node* n, SymbolTable& sbTable, std::vector<bool> code) const;
-	void expand(Node* n, const compressedResult::const_iterator& iter, const compressedResult::const_iterator& endIter, std::string& result) const;
+	void expand(Node* n, compressedResult::const_iterator& iter, const compressedResult::const_iterator& endIter, std::string& result) const;
 	void serializeTrie(Node* n, compressedResult& result) const;
 	void constructFromBinaryRepresentation(Node*& n, compressedResult::const_iterator& iter, const compressedResult::const_iterator& endIter);
 
