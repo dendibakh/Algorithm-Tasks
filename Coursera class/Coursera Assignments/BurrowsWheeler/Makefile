@@ -48,6 +48,8 @@ BENCHMARK_TEST_FILENAMES = $(subst $(BENCHMARK_TEST_SOURCES_DIR),,$(BENCHMARK_TE
 # labels definition
 all: clean BurrowsWheelerLib tests run_tests BurrowsWheelerCompressionExe
 
+lite: clean BurrowsWheelerLib lite_tests run_tests BurrowsWheelerCompressionExe
+
 .PHONY: all BurrowsWheelerLib tests clean run_tests BurrowsWheelerCompressionExe
 
 clean:
@@ -66,6 +68,9 @@ build_lib:
 #building tests
 tests: $(TEST_FILENAMES) $(BENCHMARK_TEST_FILENAMES) build_tests
 
+#lite version
+lite_tests: $(TEST_FILENAMES) build_lite_tests
+
 $(TEST_FILENAMES):
 	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(TEST_SOURCES_DIR)$@.cpp
 
@@ -74,7 +79,10 @@ $(BENCHMARK_TEST_FILENAMES):
 
 build_tests:
 	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(BENCHMARK_TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
-	
+
+build_lite_tests:
+	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
+		
 #execute tests
 run_tests:
 	$(OBJ_DIR)$(TEST_NAME)
