@@ -1,11 +1,11 @@
 #include "CircullarSuffixArray.h"
 #include <stdexcept>
 
-CircullarSuffixArray::CircullarSuffixArray(const std::string& str)
+CircullarSuffixArray::CircullarSuffixArray(const std::string& str) : circSuffixArray(CircullarIndexStrSet(str.size(), CircullarIndexString(str)))
 {
     size_t N = str.size();
     for (size_t i = 0; i < N; ++i)
-        circSuffixArray.push_back(CircullarIndexString(str, i));
+        circSuffixArray[i].getBegin() = i;
 
     if (validate())
         ThreeWayRadixQuickSort_NoConst(circSuffixArray);

@@ -1,0 +1,20 @@
+1. Add pointer checking in CircullarIndexString. - Done
+2. Remove IndexString if not needed - Done
+3. Add UT for 3wayQuickSorting - Done
+4. Do a good comparison between different algorithms. - Done
+5. Implement exe.
+6. Check the complexity of the algorithm. - Done.
+7. Check for general refactoring. - Done.
+
+Running time complexity is almost linearly.
+
+BurrowsWheelerTransform - O( N ( log (N) + 2 ) )
+MoveToFront - O( N * R )
+Huffman - O ( 2 * N )
+
+Total: O (N ( log (N) + R + 4 )
+
+Further optimizations:
+1. Remove a lot of relocations in HuffmanEncoding.
+2. Relocation in BurrowsWheeler::encode.
+3. Look at another algorithm instead of 3WayRadixQuickSort.

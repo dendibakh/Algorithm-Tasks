@@ -27,7 +27,7 @@ const std::string& BurrowsWheelerTransform::getTransformedStr() const
     return transformedStr;
 }
 
-BurrowsWheelerDecode::BurrowsWheelerDecode(size_t originalStringRow, const std::string& str) : sortedStr(str.size())
+BurrowsWheelerDecode::BurrowsWheelerDecode(size_t originalStringRow, const std::string& str) : originalString(str.size(), 0), sortedStr(str.size())
 {
     size_t N = str.size();
     for (size_t i = 0; i < N; ++i)
@@ -41,7 +41,7 @@ BurrowsWheelerDecode::BurrowsWheelerDecode(size_t originalStringRow, const std::
     size_t curElem = originalStringRow;
     for (size_t i = 0; i < N; ++i)
     {
-        originalString += sortedStr[curElem].first;
+        originalString[i] = sortedStr[curElem].first;
         curElem = sortedStr[curElem].second;
     }
 }
