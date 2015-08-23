@@ -90,25 +90,3 @@ TEST(CircullarIndexStringTest, test6)
 
     EXPECT_TRUE(copyIndexStr[-1] == ' '); // (4294967294 + 3) mod InitSet.size()
 }
-
-class CircullarIndexStringFake : public CircullarIndexString
-{
-public:
-    CircullarIndexStringFake(const std::string& str) : CircullarIndexString(str) { }
-    using CircullarIndexString::str;
-};
-
-TEST(CircullarIndexStringTest, test7_validation)
-{
-    CircullarIndexStringFake copyIndexStr("We think in generalities, but we live in details.");
-
-    try	
-    {
-        copyIndexStr.str = 0;
-        copyIndexStr[0];
-        FAIL() << "There must be an exception";
-    }
-    catch(std::exception& e)
-    {
-    }
-}

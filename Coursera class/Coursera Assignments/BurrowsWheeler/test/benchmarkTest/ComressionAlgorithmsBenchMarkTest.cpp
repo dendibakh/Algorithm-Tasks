@@ -162,6 +162,7 @@ Comression rate = 1.78457
 [       OK ] BenchMarkTest2.Huffman (1694 ms)
 */
 
+
 TEST(BenchMarkTest3, LZW)
 {
     std::string str(readFile("./test/samples/bible.txt"));

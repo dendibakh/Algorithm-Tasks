@@ -8,8 +8,8 @@ class CircullarSuffixArray
 public:
     CircullarSuffixArray(const std::string& str);
     size_t getLenght() const;
-    size_t getIndex(size_t i) const;
-    const CircullarIndexStrSet& getSet() const;
+    size_t getIndex(size_t i);
+    CircullarIndexStrSet& getSet();
 protected:
     CircullarIndexStrSet circSuffixArray;
 };

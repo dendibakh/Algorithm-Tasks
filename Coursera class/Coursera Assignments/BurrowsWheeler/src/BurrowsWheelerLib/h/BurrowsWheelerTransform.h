@@ -9,7 +9,7 @@ public:
     virtual ~BurrowsWheelerTransform();
 
     size_t getOriginalStringRow() const;
-    std::string getTransformedStr() const;
+    const std::string& getTransformedStr() const;
 private:
     CircullarSuffixArray suffixArray;
     size_t originalStringRow;

@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
+#include <stdexcept>
 
 class CircullarIndexString
 {
-        void validate() const;
 public:
 	//CircullarIndexString(const CircullarIndexString& rhs) = default;
 	CircullarIndexString& operator=(const CircullarIndexString& rhs);
@@ -12,10 +12,11 @@ public:
 
 	std::string getString() const;
 	size_t size() const;
-	size_t getBegin() const;
+	inline size_t& getBegin() { return begin; }
 	char operator[](size_t index) const;
 	bool operator==(const CircullarIndexString& rhs) const;
 protected:
-	const std::string* str;
+	std::string& str;
+	const size_t strSize;
 	size_t begin;
 };

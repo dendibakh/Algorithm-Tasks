@@ -1,17 +1,9 @@
-#include <iostream>
 #include "3WayRadixQuickSort.h"
 
 using namespace std;
 
 namespace ThreeWayRadixQsort_CircullarIndexStr
 {
-	void exchange(CircullarIndexStrSet& set, int pos1, int pos2)
-	{
-		CircullarIndexString temp(set[pos1]);
-		set[pos1] = set[pos2];
-		set[pos2] = temp;
-	}
-
 	void DoSort(CircullarIndexStrSet& set, size_t digitIndex, int lo, int hi)
 	{
 		if (hi <= lo) // condition to break the recursion
@@ -27,13 +19,13 @@ namespace ThreeWayRadixQsort_CircullarIndexStr
 			unsigned char curSymbolIndex = set[i][digitIndex];
 			if (symbolIndex > curSymbolIndex)
 			{
-				exchange(set, lo_copy, i);
+                                std::swap(set[lo_copy].getBegin(), set[i].getBegin());
 				++i;
 				++lo_copy;
 			}
 			else if (curSymbolIndex > symbolIndex)
 			{
-				exchange(set, hi_copy, i);
+                                std::swap(set[hi_copy].getBegin(), set[i].getBegin());
 				--hi_copy;
 			}
 			else

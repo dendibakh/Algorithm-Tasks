@@ -18,7 +18,7 @@ size_t CircullarSuffixArray::getLenght() const
     return circSuffixArray[0].size();
 }
 
-size_t CircullarSuffixArray::getIndex(size_t i) const
+size_t CircullarSuffixArray::getIndex(size_t i)
 {
     if (!validate())
         throw std::runtime_error("Initial string is empty.");
@@ -32,7 +32,7 @@ bool CircullarSuffixArray::validate() const
     return 0 != circSuffixArray.size();
 }
 
-const CircullarIndexStrSet& CircullarSuffixArray::getSet() const
+CircullarIndexStrSet& CircullarSuffixArray::getSet()
 {
     return circSuffixArray;
 }
