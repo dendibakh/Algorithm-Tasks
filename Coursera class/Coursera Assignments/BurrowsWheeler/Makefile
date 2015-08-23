@@ -1,3 +1,4 @@
+export profile?=F
 .NOTPARALLEL:
 
 # defining variables
@@ -5,6 +6,10 @@ BUILD_TOOL = g++
 ARCHIVE_TOOL = ar
 
 COMPILE_FLAGS = -c -Wall -Werror
+PROFILE_FLAGS = 
+ifeq ($(profile) ,yes)
+PROFILE_FLAGS = -pg
+endif
 
 EXE_NAME = BurrowsWheelerCompression
 SOURCES_DIR = ./src/
@@ -50,7 +55,7 @@ all: clean BurrowsWheelerLib tests run_tests BurrowsWheelerCompressionExe
 
 lite: clean BurrowsWheelerLib lite_tests run_tests BurrowsWheelerCompressionExe
 
-.PHONY: all BurrowsWheelerLib tests clean run_tests BurrowsWheelerCompressionExe
+.PHONY: all lite BurrowsWheelerLib tests clean run_tests BurrowsWheelerCompressionExe
 
 clean:
 	rm -r -f $(OBJ_DIR)
@@ -60,7 +65,7 @@ clean:
 BurrowsWheelerLib: $(LIB_FILENAMES) build_lib
 
 $(LIB_FILENAMES):
-	$(BUILD_TOOL) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(LIB_SOURCES_DIR)$@.cpp
+	$(BUILD_TOOL) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(LIB_SOURCES_DIR)$@.cpp $(PROFILE_FLAGS)
 
 build_lib:
 	$(ARCHIVE_TOOL) rcs $(OBJ_DIR)lib$(LIB_NAME).a $(LIB_OBJECTS)
@@ -72,13 +77,13 @@ tests: $(TEST_FILENAMES) $(BENCHMARK_TEST_FILENAMES) build_tests
 lite_tests: $(TEST_FILENAMES) build_lite_tests
 
 $(TEST_FILENAMES):
-	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(TEST_SOURCES_DIR)$@.cpp
+	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(TEST_SOURCES_DIR)$@.cpp $(PROFILE_FLAGS)
 
 $(BENCHMARK_TEST_FILENAMES):
-	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(BENCHMARK_TEST_SOURCES_DIR)$@.cpp
+	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(BENCHMARK_TEST_SOURCES_DIR)$@.cpp $(PROFILE_FLAGS)
 
 build_tests:
-	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(BENCHMARK_TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
+	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(BENCHMARK_TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME) $(PROFILE_FLAGS)
 
 build_lite_tests:
 	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(TEST_NAME) $(TEST_OBJECTS) $(ADD_LIBRARIES_DIR) $(ADD_LIBRARIES) -L$(OBJ_DIR) -l$(LIB_NAME)
