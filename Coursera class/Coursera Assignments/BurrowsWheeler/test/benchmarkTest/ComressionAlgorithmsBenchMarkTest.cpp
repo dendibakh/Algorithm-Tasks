@@ -227,5 +227,5 @@ Comression rate = 1.82436
 originalSize = 32379136
 compressedSize = 8434677
 Comression rate = 3.83881
-[       OK ] BenchMarkTest3.BurrowsWheeler (19545 ms)
+[       OK ] BenchMarkTest3.BurrowsWheeler (17041 ms)
 */

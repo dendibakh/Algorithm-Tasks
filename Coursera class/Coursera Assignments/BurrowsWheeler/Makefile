@@ -91,12 +91,13 @@ build_lite_tests:
 #execute tests
 run_tests:
 	$(OBJ_DIR)$(TEST_NAME)
+	gprof $(OBJ_DIR)$(TEST_NAME) gmon.out > profileReport.txt
 
 #build BurrowsWheelerCompression executable
 BurrowsWheelerCompressionExe: $(EXE_FILENAMES) build_executable
 
 $(EXE_FILENAMES):
-	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(SOURCES_DIR)$@.cpp
+	$(BUILD_TOOL) -I$(ADD_HEADERS_DIR) -I$(HEADER_DIR) $(COMPILE_FLAGS) -o $(OBJ_DIR)$@.o $(SOURCES_DIR)$@.cpp $(PROFILE_FLAGS)
 
 build_executable:
-	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(EXE_NAME) $(EXE_OBJECTS) -L$(OBJ_DIR) -l$(LIB_NAME)
+	$(BUILD_TOOL) -lpthread -o $(OBJ_DIR)$(EXE_NAME) $(EXE_OBJECTS) -L$(OBJ_DIR) -l$(LIB_NAME) $(PROFILE_FLAGS)
