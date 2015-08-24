@@ -2,7 +2,7 @@
 2. Remove IndexString if not needed - Done
 3. Add UT for 3wayQuickSorting - Done
 4. Do a good comparison between different algorithms. - Done
-5. Implement exe.
+5. Implement exe. - not done. It is quite straight forward.
 6. Check the complexity of the algorithm. - Done.
 7. Check for general refactoring. - Done.
 
@@ -18,3 +18,5 @@ Further optimizations:
 1. Remove a lot of relocations in HuffmanEncoding.
 2. Relocation in BurrowsWheeler::encode.
 3. Look at another algorithm instead of 3WayRadixQuickSort.
+
+Advantage of point 1 and 2 is around 10%. This could be done, but interfaces will look bad.
